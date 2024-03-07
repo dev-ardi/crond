@@ -3,7 +3,7 @@
 
 use std::{
     fs::{File, OpenOptions},
-    path::{Path},
+    path::Path,
     process::Output,
     sync::Arc,
     time::Duration,
@@ -11,7 +11,7 @@ use std::{
 
 use anyhow::{anyhow, Context};
 
-use futures::{future::join_all};
+use futures::future::join_all;
 use tokio::{process::Command, time::sleep};
 use tracing::{error, info, instrument, trace, Level};
 use tracing_subscriber::layer::SubscriberExt;
@@ -50,6 +50,7 @@ async fn loop_folder(base: &Path, folder_name: &str, duration: Duration) -> () {
                         .spawn();
                     trace!("{cmd:?}");
                 } else {
+                    todo!("untested on other platforms, should respect shebang");
                      cmd = Command::new(&file).spawn();
                 }
             };
